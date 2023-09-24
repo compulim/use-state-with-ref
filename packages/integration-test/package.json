@@ -28,6 +28,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.22.15",
     "use-state-with-ref": "^0.0.0-0"
   }
 }
