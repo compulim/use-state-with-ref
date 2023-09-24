@@ -1,0 +1,18 @@
+name: Continuous deployment
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '.devcontainer/**'
+      - '.github/**'
+
+jobs:
+  call-workflow:
+    permissions:
+      pages: write
+      id-token: write
+    secrets: inherit
+    uses: compulim/workflows/.github/workflows/continuous-deployment.yml@main
+    with:
+      package-name: use-state-with-ref

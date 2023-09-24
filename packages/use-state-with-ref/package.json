@@ -1,0 +1,94 @@
+{
+  "name": "use-state-with-ref",
+  "version": "0.0.0-0",
+  "description": "React `useState` with a readonly `RefObject`.",
+  "files": [
+    "./lib/"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esmodules-types/index.d.ts",
+        "default": "./lib/esmodules/index.js"
+      },
+      "require": {
+        "types": "./lib/commonjs-types/index.d.ts",
+        "default": "./lib/commonjs/index.js"
+      }
+    },
+    "./useStateWithRef": {
+      "import": {
+        "types": "./lib/esmodules-types/useStateWithRef.d.ts",
+        "default": "./lib/esmodules/useStateWithRef.js"
+      },
+      "require": {
+        "types": "./lib/commonjs-types/useStateWithRef.d.ts",
+        "default": "./lib/commonjs/useStateWithRef.js"
+      }
+    }
+  },
+  "main": "./lib/commonjs/index.js",
+  "typings": "./lib/commonjs-types/index.d.ts",
+  "scripts": {
+    "build": "npm run build:babel:commonjs && npm run build:babel:esmodules && npm run build:typescript:commonjs && npm run build:typescript:esmodules",
+    "build:babel:commonjs": "babel src --config-file ./babel.commonjs.config.json --extensions .ts,.tsx --out-dir ./lib/commonjs/",
+    "build:babel:esmodules": "babel src --config-file ./babel.esmodules.config.json --extensions .ts,.tsx --out-dir ./lib/esmodules/",
+    "build:typescript:commonjs": "tsc --project ./src/tsconfig.declaration.commonjs.json",
+    "build:typescript:esmodules": "tsc --project ./src/tsconfig.declaration.esmodules.json",
+    "bump": "npm run bump:prod && npm run bump:dev && npm run bump:auditfix && npm run bump:babel",
+    "bump:auditfix": "npm audit fix || exit 0",
+    "bump:babel": "npm run bump:babel:commonjs && npm run bump:babel:esmodules",
+    "bump:babel:commonjs": "cat babel.commonjs.config.json | jq --arg CORE_JS_VERSION `[ -f node_modules/@babel/runtime-corejs3/package.json ] && cat node_modules/@babel/runtime-corejs3/package.json | jq -r .version || cat ../../node_modules/@babel/runtime-corejs3/package.json | jq -r .version` '(.plugins[] | select(.[0] == \"@babel/plugin-transform-runtime\"))[1].version = $CORE_JS_VERSION' | prettier --parser json > babel.commonjs.config.json.tmp && mv babel.commonjs.config.json.tmp babel.commonjs.config.json",
+    "bump:babel:esmodules": "cat babel.esmodules.config.json | jq --arg CORE_JS_VERSION `[ -f node_modules/@babel/runtime-corejs3/package.json ] && cat node_modules/@babel/runtime-corejs3/package.json | jq -r .version || cat ../../node_modules/@babel/runtime-corejs3/package.json | jq -r .version` '(.plugins[] | select(.[0] == \"@babel/plugin-transform-runtime\"))[1].version = $CORE_JS_VERSION' | prettier --parser json > babel.esmodules.config.json.tmp && mv babel.esmodules.config.json.tmp babel.esmodules.config.json",
+    "bump:dev": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '.localPeerDependencies // {} as $L | .devDependencies // {} | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@latest\") | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
+    "bump:prod": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '.localPeerDependencies // {} as $L | .dependencies // {} | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@latest\") | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
+    "postscaffold": "npm run bump:babel",
+    "precommit": "npm run precommit:eslint && npm run precommit:typescript:production && npm run precommit:typescript:test",
+    "precommit:eslint": "eslint ./src/",
+    "precommit:typescript:production": "tsc --noEmit --project ./src/tsconfig.precommit.production.json",
+    "precommit:typescript:test": "tsc --noEmit --project ./src/tsconfig.precommit.test.json",
+    "prepack": "cp ../../CHANGELOG.md . && cp ../../LICENSE . && cp ../../README.md .",
+    "start": "esbuild --bundle --outfile=./public/main.js --servedir=./public --sourcemap ./scenarios/index.jsx",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/compulim/use-state-with-ref.git"
+  },
+  "keywords": [
+    "react",
+    "react-hook",
+    "react-hooks"
+  ],
+  "author": "William Wong (https://github.com/compulim)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/compulim/use-state-with-ref/issues"
+  },
+  "homepage": "https://github.com/compulim/use-state-with-ref#readme",
+  "peerDependencies": {
+    "react": ">=16.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.15",
+    "@babel/core": "^7.22.17",
+    "@babel/plugin-transform-runtime": "^7.22.15",
+    "@babel/preset-env": "^7.22.15",
+    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-typescript": "^7.22.15",
+    "@testing-library/react": "^14.0.0",
+    "@tsconfig/recommended": "^1.0.2",
+    "@tsconfig/strictest": "^2.0.2",
+    "@types/jest": "^29.5.4",
+    "@types/react": "^18.2.21",
+    "jest": "^29.6.4",
+    "jest-environment-jsdom": "^29.6.4",
+    "react": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.22.15",
+    "use-ref-from": "^0.0.2"
+  }
+}
