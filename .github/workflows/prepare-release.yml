@@ -1,12 +1,21 @@
-name: Prepare release
+name: Publish release
 
 on:
-  workflow_dispatch: {}
+  release:
+    types: [created]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag to publish
 
 jobs:
   call-workflow:
     permissions:
       contents: write
+      pages: write
       id-token: write
     secrets: inherit
-    uses: compulim/workflows/.github/workflows/prepare-release.yml@main
+    uses: compulim/workflows/.github/workflows/publish-release.yml@main
+    with:
+      package-name: use-state-with-ref
+      tag: ${{ inputs.tag || github.ref }}
