@@ -5,6 +5,10 @@ import { type Dispatch, type RefObject, SetStateAction } from 'react';
 
 import useStateWithRef from './useStateWithRef';
 
+import { type useRefFrom } from 'use-ref-from';
+
+type ReadonlyRefObject<T> = ReturnType<typeof useRefFrom<T>>;
+
 test('should have initial value', () => {
   const { result } = renderHook(() => useStateWithRef(123)[0]);
 
@@ -18,7 +22,7 @@ test('should have initial value setter', () => {
 });
 
 test('should have setter', async () => {
-  let hoistedSetValue;
+  let hoistedSetValue: Dispatch<SetStateAction<number>>;
 
   const { result } = renderHook(() => {
     const [value, setValue] = useStateWithRef(123);
@@ -36,8 +40,8 @@ test('should have setter', async () => {
 });
 
 test('should have RefObject', async () => {
-  let hoistedSetValue;
-  let hoistedValueRef;
+  let hoistedSetValue: Dispatch<SetStateAction<number>>;
+  let hoistedValueRef: ReadonlyRefObject<number> | undefined;
 
   const { result } = renderHook(() => {
     const [value, setValue, valueRef] = useStateWithRef(123);
