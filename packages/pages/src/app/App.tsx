@@ -1,5 +1,5 @@
 import { useStateWithRef } from 'use-state-with-ref';
-import React, { type FormEventHandler, useCallback } from 'react';
+import { type FormEventHandler, useCallback } from 'react';
 
 const App = () => {
   const [value, setValue, valueRef] = useStateWithRef('Hello, World!');
