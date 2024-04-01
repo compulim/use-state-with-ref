@@ -1,11 +1,25 @@
 /** @jest-environment jsdom */
 
-import { act, renderHook } from '@testing-library/react';
-import { type Dispatch, type RefObject, SetStateAction } from 'react';
+import { SetStateAction, type Dispatch, type RefObject } from 'react';
 
 import useStateWithRef from './useStateWithRef';
 
 import { type useRefFrom } from 'use-ref-from';
+
+const act: <T extends Promise<void> | void>(fn: () => T) => T =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('@testing-library/react').act ||
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('@testing-library/react-hooks').act;
+
+const renderHook: <T, P>(
+  render: (props: P) => T,
+  options?: { initialProps: P }
+) => { rerender: (props: P) => void; result: { current: T } } =
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('@testing-library/react').renderHook ||
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  require('@testing-library/react-hooks').renderHook;
 
 type ReadonlyRefObject<T> = ReturnType<typeof useRefFrom<T>>;
 
@@ -79,7 +93,7 @@ test('should not change setter and RefObject', async () => {
   expect(result).toHaveProperty('current', 123);
   expect(hoistedValueRefs[0]).toHaveProperty('current', 123);
 
-  await act(() => hoistedSetValues[0](789));
+  await act(() => hoistedSetValues[0]?.(789));
 
   expect(numRender).toBe(2);
 
