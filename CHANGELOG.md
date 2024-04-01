@@ -8,10 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Bumped dependencies, by [@compulim](https://github.com/compulim), in PR [#16](https://github.com/compulim/use-state-with-ref/pull/16) and [#18](https://github.com/compulim/use-state-with-ref/pull/18)
+- Relaxed peer dependencies requirements to `react@>=16.8.0`, by [@compulim](https://github.com/compulim) in PR [#XX](https://github.com/compulim/use-state-with-ref/pull/XX)
+- Bumped dependencies, by [@compulim](https://github.com/compulim), in PR [#16](https://github.com/compulim/use-state-with-ref/pull/16), [#18](https://github.com/compulim/use-state-with-ref/pull/18), and [#XX](https://github.com/compulim/use-state-with-ref/pull/XX)
    - Production dependencies
       - [`@babel/runtime-corejs3@7.23.6`](https://npmjs.com/package/@babel/runtime-corejs3)
-      - [`use-ref-from@0.0.3`](https://npmjs.com/package/use-ref-from)
+      - [`use-ref-from@0.1.0`](https://npmjs.com/package/use-ref-from)
    - Development dependencies
       - [`@babel/cli@7.23.4`](https://npmjs.com/package/@babel/cli)
       - [`@babel/core@7.23.6`](https://npmjs.com/package/@babel/core)
