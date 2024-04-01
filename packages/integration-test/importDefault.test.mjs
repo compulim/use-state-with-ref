@@ -30,7 +30,7 @@ test('simple scenario', async () => {
   expect(result).toHaveProperty('current', 123);
   expect(hoistedValueRef).toHaveProperty('current', 123);
 
-  await act(() => hoistedSetValue(789));
+  act(() => hoistedSetValue(789));
 
   expect(result).toHaveProperty('current', 789);
   expect(hoistedValueRef).toHaveProperty('current', 789);

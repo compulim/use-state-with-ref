@@ -6,7 +6,7 @@ import useStateWithRef from './useStateWithRef';
 
 import { type useRefFrom } from 'use-ref-from';
 
-const act: <T extends Promise<void> | void>(fn: () => T) => T =
+const act: (fn: () => void) => void =
   // eslint-disable-next-line @typescript-eslint/no-var-requires
   require('@testing-library/react').act ||
   // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -48,7 +48,7 @@ test('should have setter', async () => {
 
   expect(result).toHaveProperty('current', 123);
 
-  await act(() => hoistedSetValue(789));
+  act(() => hoistedSetValue(789));
 
   expect(result).toHaveProperty('current', 789);
 });
@@ -69,7 +69,7 @@ test('should have RefObject', async () => {
   expect(result).toHaveProperty('current', 123);
   expect(hoistedValueRef).toHaveProperty('current', 123);
 
-  await act(() => hoistedSetValue(789));
+  act(() => hoistedSetValue(789));
 
   expect(result).toHaveProperty('current', 789);
   expect(hoistedValueRef).toHaveProperty('current', 789);
@@ -93,7 +93,7 @@ test('should not change setter and RefObject', async () => {
   expect(result).toHaveProperty('current', 123);
   expect(hoistedValueRefs[0]).toHaveProperty('current', 123);
 
-  await act(() => hoistedSetValues[0]?.(789));
+  act(() => hoistedSetValues[0]?.(789));
 
   expect(numRender).toBe(2);
 
