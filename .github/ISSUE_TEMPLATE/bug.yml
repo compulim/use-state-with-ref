@@ -31,9 +31,7 @@ body:
       multiple: true
       options:
         - 'ESM: import { useStateWithRef } from "use-state-with-ref"'
-        - 'ESM: import useStateWithRef from "use-state-with-ref/useStateWithRef"'
         - 'CommonJS: require("use-state-with-ref")'
-        - 'CommonJS: require("use-state-with-ref/useStateWithRef")'
         - Others or unrelated
     validations:
       required: true
