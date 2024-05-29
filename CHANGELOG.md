@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking changes
 
 - Removed named exports, please import the defaults instead
-   - Use `import { useStateWithRef } from 'use-state-with-ref';` instead of `import useStateWithRef from 'use-state-with-ref/useStateWithRef';`
+   - Use `import { useStateWithRef } from 'use-state-with-ref'` instead
 - Moved build tools from Babel to tsup/esbuild
 
 ## [0.1.0] - 2024-04-01
