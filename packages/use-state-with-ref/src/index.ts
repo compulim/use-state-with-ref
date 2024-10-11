@@ -1,3 +1,3 @@
-import useStateWithRef from './useStateWithRef';
+import useStateWithRef from './useStateWithRef.ts';
 
 export { useStateWithRef };
