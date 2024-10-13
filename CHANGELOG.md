@@ -7,11 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Removed
-
-- 💢 Removed named exports, please import the defaults instead
-   - Use `import { useStateWithRef } from 'use-state-with-ref'` instead
-
 ### Changed
 
 - 💢 Moved build tools from Babel to tsup/esbuild
@@ -36,6 +31,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
       - [`typescript@5.5.2`](https://npmjs.com/package/typescript/v/5.5.2)
 - Added [`ESLint import/export syntax`](https://npmjs.com/package/eslint-plugin-import), in PR [#32](https://github.com/compulim/use-state-with-ref/pull/32)
 - Added [`publint`](https://npmjs.com/package/publint), in PR [#32](https://github.com/compulim/use-state-with-ref/pull/32)
+- Bumped dependencies, in PR [#34](https://github.com/compulim/use-state-with-ref/pull/34)
+  - Development dependencies
+    - [`@babel/preset-env@7.25.8`](https://npmjs.com/package/@babel/preset-env/v/7.25.8)
+    - [`@babel/preset-react@7.25.7`](https://npmjs.com/package/@babel/preset-react/v/7.25.7)
+    - [`@babel/preset-typescript@7.25.7`](https://npmjs.com/package/@babel/preset-typescript/v/7.25.7)
+    - [`@testing-library/dom@10.4.0`](https://npmjs.com/package/@testing-library/dom/v/10.4.0)
+    - [`@testing-library/react@16.0.1`](https://npmjs.com/package/@testing-library/react/v/16.0.1)
+    - [`@tsconfig/recommended@1.0.7`](https://npmjs.com/package/@tsconfig/recommended/v/1.0.7)
+    - [`@types/jest@29.5.13`](https://npmjs.com/package/@types/jest/v/29.5.13)
+    - [`@types/react@18.3.11`](https://npmjs.com/package/@types/react/v/18.3.11)
+    - [`@types/react-dom@18.3.1`](https://npmjs.com/package/@types/react-dom/v/18.3.1)
+    - [`esbuild@0.24.0`](https://npmjs.com/package/esbuild/v/0.24.0)
+    - [`tsup@8.3.0`](https://npmjs.com/package/tsup/v/8.3.0)
+    - [`typescript@5.6.3`](https://npmjs.com/package/typescript/v/5.6.3)
+
+### Removed
+
+- 💢 Removed named exports, please import the defaults instead
+   - Use `import { useStateWithRef } from 'use-state-with-ref'` instead
 
 ## [0.1.0] - 2024-04-01
 
@@ -75,5 +89,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First public release
 
+[Unreleased]: https://github.com/compulim/use-state-with-ref/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/compulim/use-state-with-ref/compare/v0.0.1...v0.1.0
 [0.0.1]: https://github.com/compulim/use-state-with-ref/releases/tag/v0.0.1
