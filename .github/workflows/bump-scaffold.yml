@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       package-name:
-        default: 'use-ref-from'
+        default: 'use-state-with-ref'
         description: Name of the package
         required: true
         type: string
