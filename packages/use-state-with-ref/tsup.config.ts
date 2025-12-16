@@ -4,9 +4,10 @@ export default defineConfig([
   {
     dts: true,
     entry: {
-      'use-state-with-ref': './src/index.ts'
+      ['use-state-with-ref'.split('/').at(-1) as string]: './src/index.ts'
     },
     format: ['cjs', 'esm'],
-    sourcemap: true
+    sourcemap: true,
+    target: 'esnext'
   }
 ]);
