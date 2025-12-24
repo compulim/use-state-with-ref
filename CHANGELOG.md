@@ -45,6 +45,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - [`esbuild@0.24.0`](https://npmjs.com/package/esbuild/v/0.24.0)
     - [`tsup@8.3.0`](https://npmjs.com/package/tsup/v/8.3.0)
     - [`typescript@5.6.3`](https://npmjs.com/package/typescript/v/5.6.3)
+- Bumped dependencies, in PR [#41](https://github.com/compulim/use-state-with-ref/pull/41)
+  - Development dependencies
+    - [`@tsconfig/strictest@2.0.8`](https://npmjs.com/package/@tsconfig/strictest/v/2.0.8)
+    - [`@types/react@18.3.27`](https://npmjs.com/package/@types/react/v/18.3.27)
+    - [`@types/react-dom@18.3.7`](https://npmjs.com/package/@types/react-dom/v/18.3.7)
+    - [`esbuild@0.27.2`](https://npmjs.com/package/esbuild/v/0.27.2)
+    - [`typescript@5.9.3`](https://npmjs.com/package/typescript/v/5.9.3)
 
 ### Removed
 
