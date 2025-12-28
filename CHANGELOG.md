@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- 💢 Strictened peer dependencies requirements to `react@>=16.8.6`, by [@compulim](https://github.com/compulim) in PR [#44](https://github.com/compulim/use-state-with-ref/pull/44)
+
 ## [0.2.0] - 2025-12-24
 
 ### Changed
