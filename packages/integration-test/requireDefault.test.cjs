@@ -1,10 +1,8 @@
-const { test } = require('node:test');
+const { act } = require('@compulim/test-harness/act');
+const { renderHook } = require('@compulim/test-harness/renderHook');
 const { expect } = require('expect');
+const { test } = require('node:test');
 const { useStateWithRef } = require('use-state-with-ref');
-
-const act = require('@testing-library/react').act || require('@testing-library/react-hooks').act;
-
-const renderHook = require('@testing-library/react').renderHook || require('@testing-library/react-hooks').renderHook;
 
 test('simple scenario', async () => {
   let hoistedSetValue;

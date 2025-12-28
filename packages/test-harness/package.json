@@ -1,19 +1,39 @@
 {
-  "name": "@compulim/use-state-with-ref-integration-test",
+  "name": "@compulim/test-harness",
   "version": "0.0.0-0",
   "description": "",
   "private": true,
+  "exports": {
+    "./act": {
+      "import": {
+        "default": "./src/act.mjs",
+        "types": "./src/act.d.mts"
+      },
+      "require": {
+        "default": "./src/act.js",
+        "types": "./src/act.d.ts"
+      }
+    },
+    "./happy-dom.import": "./src/happy-dom.import.mjs",
+    "./renderHook": {
+      "import": {
+        "default": "./src/renderHook.mjs",
+        "types": "./src/renderHook.d.mts"
+      },
+      "require": {
+        "default": "./src/renderHook.js",
+        "types": "./src/renderHook.d.ts"
+      }
+    }
+  },
   "scripts": {
-    "build": "if test \"$CI\" = \"true\"; then mkdir -p ./test/webDriver/static/js/; cp `node --eval=\"console.log(require('path').resolve(require('resolve-cwd')('@testduet/wait-for'), '../../dist/**'))\"` ./test/webDriver/static/js/; else mkdir -p ./test/webDriver/static/; ln --relative --symbolic `node --eval=\"console.log(require('path').resolve(require('resolve-cwd')('@testduet/wait-for'), '../../dist'))\"` ./test/webDriver/static/js; fi",
     "bump": "npm run bump:prod && npm run bump:dev",
     "bump:dev": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.devDependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
     "bump:prod": "PACKAGES_TO_BUMP=$(cat package.json | jq -r '(.pinDependencies // {}) as $P | (.localPeerDependencies // {}) as $L | (.dependencies // {}) | to_entries | map(select(.key as $K | $L | has($K) | not)) | map(.key + \"@\" + ($P[.key] // [\"latest\"])[0]) | join(\" \")') && [ ! -z \"$PACKAGES_TO_BUMP\" ] && npm install $PACKAGES_TO_BUMP || true",
-    "docker": "docker compose up --quiet-pull --scale chromium=4",
-    "posttest": "if test \"$CI\" = \"true\"; then docker compose logs; docker compose down; fi",
-    "precommit": "ESLINT_USE_FLAT_CONFIG=false eslint --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts ./",
-    "pretest": "if test \"$CI\" = \"true\"; then npm run build; npm run docker -- --detach --wait; fi",
-    "switch": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json",
-    "test": "node --experimental-strip-types --import @compulim/test-harness/happy-dom.import --test '**/*.test.{cjs,mjs}' 'typings.test.cjs'"
+    "precommit": "npm run precommit:eslint && npm run precommit:typescript",
+    "precommit:eslint": "ESLINT_USE_FLAT_CONFIG=false eslint --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts ./",
+    "precommit:typescript": "tsc --noEmit --project ./src/tsconfig.precommit.json",
+    "switch": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json"
   },
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
@@ -60,24 +80,30 @@
     ],
     "react-dom": [
       "18"
+    ],
+    "react-test-renderer": [
+      "18"
     ]
   },
   "localPeerDependencies": {
     "use-state-with-ref": "0.0.0-0"
   },
   "devDependencies": {
-    "@compulim/test-harness": "0.0.0-0",
+    "@happy-dom/global-registrator": "^20.0.11",
     "@testduet/wait-for": "^0.1.0",
-    "@tsconfig/strictest": "^2.0.5",
+    "@testing-library/react": "^16.0.1",
+    "@tsconfig/strictest": "^2.0.8",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.2",
     "expect": "^30.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-test-renderer": "^18.3.1",
     "resolve-cwd": "^3.0.0",
     "typescript": "^5.6.3"
   },
   "dependencies": {
     "use-state-with-ref": "0.0.0-0"
-  }
+  },
+  "main": "index.js"
 }

@@ -1,18 +1,10 @@
-import { test } from 'node:test';
+import { act } from '@compulim/test-harness/act';
+import { renderHook } from '@compulim/test-harness/renderHook';
 import { expect } from 'expect';
-import type { SetStateAction, Dispatch, RefObject } from 'react';
-
+import { test } from 'node:test';
+import type { Dispatch, RefObject, SetStateAction } from 'react';
+import { type useRefFrom } from 'use-ref-from';
 import useStateWithRef from './useStateWithRef.ts';
-
-import type useRefFrom from 'use-ref-from/useRefFrom';
-
-// Dynamic imports to handle CJS/ESM compat
-const testingLibraryReact = await import('@testing-library/react').catch(() => null);
-// @ts-expect-error - react-hooks may not be available in all React versions
-const testingLibraryReactHooks = await import('@testing-library/react-hooks').catch(() => null);
-
-const act = testingLibraryReact?.act || testingLibraryReactHooks?.act;
-const renderHook = testingLibraryReact?.renderHook || testingLibraryReactHooks?.renderHook;
 
 type ReadonlyRefObject<T> = ReturnType<typeof useRefFrom<T>>;
 

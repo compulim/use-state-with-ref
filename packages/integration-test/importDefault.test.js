@@ -1,8 +1,8 @@
+import { test } from 'node:test';
+import { expect } from 'expect';
+import { useStateWithRef } from 'use-state-with-ref';
 import { act } from '@compulim/test-harness/act';
 import { renderHook } from '@compulim/test-harness/renderHook';
-import { expect } from 'expect';
-import { test } from 'node:test';
-import { useStateWithRef } from 'use-state-with-ref';
 
 test('simple scenario', async () => {
   /** @type {((value: number) => void) | undefined} */
