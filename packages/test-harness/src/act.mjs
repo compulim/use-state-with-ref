@@ -2,10 +2,10 @@
 let act;
 
 try {
-  ({ act } = await import('@testing-library/react'));
-} catch {
   // eslint-disable-next-line import/no-unresolved
   ({ act } = await import('@testing-library/react-hooks'));
+} catch {
+  ({ act } = await import('@testing-library/react'));
 }
 
 export { act };

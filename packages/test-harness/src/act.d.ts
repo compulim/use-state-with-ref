@@ -1,3 +1,5 @@
 declare const act: (fn: () => void) => void;
 
-export = { act };
+declare const export_: { act: typeof act };
+
+export = export_;

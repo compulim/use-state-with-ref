@@ -1,3 +1,3 @@
-const act: (fn: () => void) => void;
+declare const act: (fn: () => void) => void;
 
 export { act };

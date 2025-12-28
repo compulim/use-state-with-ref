@@ -3,4 +3,6 @@ declare const renderHook: <T, P>(
   options?: { initialProps: P }
 ) => { rerender: (props: P) => void; result: { current: T } };
 
-export = { renderHook };
+declare const export_: { renderHook: typeof renderHook };
+
+export = export_;

@@ -2,10 +2,10 @@
 let renderHook;
 
 try {
-  ({ renderHook } = await import('@testing-library/react'));
-} catch {
   // eslint-disable-next-line import/no-unresolved
   ({ renderHook } = await import('@testing-library/react-hooks'));
+} catch {
+  ({ renderHook } = await import('@testing-library/react'));
 }
 
 export { renderHook };
