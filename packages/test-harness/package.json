@@ -91,6 +91,7 @@
   "devDependencies": {
     "@happy-dom/global-registrator": "^20.0.11",
     "@testduet/wait-for": "^0.1.0",
+    "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.0.1",
     "@tsconfig/strictest": "^2.0.8",
     "@types/react": "^18.3.11",
@@ -104,6 +105,5 @@
   },
   "dependencies": {
     "use-state-with-ref": "0.0.0-0"
-  },
-  "main": "index.js"
+  }
 }
