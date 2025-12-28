@@ -56,9 +56,9 @@
       "@testing-library/react-hooks": "latest",
       "@types/react": "^16",
       "@types/react-dom": "^16",
-      "react": "16.8.6",
-      "react-dom": "16.8.6",
-      "react-test-renderer": "16.8.6"
+      "react": "16.8.0",
+      "react-dom": "16.8.0",
+      "react-test-renderer": "16.8.0"
     }
   },
   "switch:react-17": {
@@ -99,7 +99,7 @@
     ]
   },
   "peerDependencies": {
-    "react": ">=16.8.6"
+    "react": ">=16.8.0"
   },
   "devDependencies": {
     "@compulim/test-harness": "^0.0.0-0",
