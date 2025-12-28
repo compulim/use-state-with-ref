@@ -1,8 +1,15 @@
+const { test } = require('node:test');
+const { expect } = require('expect');
 const { createProgram, flattenDiagnosticMessageText, getPreEmitDiagnostics } = require('typescript');
 
 test('with initial value should work', () => {
   // GIVEN: TypeScript compiler to compile ./typings/withInitialValue.ts.
-  const program = createProgram(['./typings/withInitialValue.ts'], { noEmit: true, strict: true });
+  const program = createProgram(['./typings/withInitialValue.ts'], {
+    noEmit: true,
+    strict: true,
+    module: 199, // NodeNext
+    moduleResolution: 3 // NodeNext
+  });
 
   // WHEN: Compile.
   const { diagnostics } = program.emit();
@@ -16,7 +23,12 @@ test('with initial value should work', () => {
 
 test('without initial value should work', () => {
   // GIVEN: TypeScript compiler to compile ./typings/withoutInitialValue.ts.
-  const program = createProgram(['./typings/withoutInitialValue.ts'], { noEmit: true, strict: true });
+  const program = createProgram(['./typings/withoutInitialValue.ts'], {
+    noEmit: true,
+    strict: true,
+    module: 199, // NodeNext
+    moduleResolution: 3 // NodeNext
+  });
 
   // WHEN: Compile.
   const { diagnostics } = program.emit();

@@ -1,25 +1,18 @@
-/** @jest-environment jsdom */
+import { test } from 'node:test';
+import { expect } from 'expect';
+import type { SetStateAction, Dispatch, RefObject } from 'react';
 
-import { SetStateAction, type Dispatch, type RefObject } from 'react';
+import useStateWithRef from './useStateWithRef.ts';
 
-import useStateWithRef from './useStateWithRef';
+import type useRefFrom from 'use-ref-from/useRefFrom';
 
-import { type useRefFrom } from 'use-ref-from';
+// Dynamic imports to handle CJS/ESM compat
+const testingLibraryReact = await import('@testing-library/react').catch(() => null);
+// @ts-expect-error - react-hooks may not be available in all React versions
+const testingLibraryReactHooks = await import('@testing-library/react-hooks').catch(() => null);
 
-const act: (fn: () => void) => void =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').act ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').act;
-
-const renderHook: <T, P>(
-  render: (props: P) => T,
-  options?: { initialProps: P }
-) => { rerender: (props: P) => void; result: { current: T } } =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').renderHook ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').renderHook;
+const act = testingLibraryReact?.act || testingLibraryReactHooks?.act;
+const renderHook = testingLibraryReact?.renderHook || testingLibraryReactHooks?.renderHook;
 
 type ReadonlyRefObject<T> = ReturnType<typeof useRefFrom<T>>;
 

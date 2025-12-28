@@ -1,18 +1,10 @@
-/** @jest-environment jsdom */
-
+const { test } = require('node:test');
+const { expect } = require('expect');
 const { useStateWithRef } = require('use-state-with-ref');
 
-const act =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').act ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').act;
+const act = require('@testing-library/react').act || require('@testing-library/react-hooks').act;
 
-const renderHook =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').renderHook ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').renderHook;
+const renderHook = require('@testing-library/react').renderHook || require('@testing-library/react-hooks').renderHook;
 
 test('simple scenario', async () => {
   let hoistedSetValue;

@@ -1,18 +1,13 @@
-/** @jest-environment jsdom */
-
+import { test } from 'node:test';
+import { expect } from 'expect';
 import { useStateWithRef } from 'use-state-with-ref';
 
-const act =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').act ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').act;
+// Dynamic imports to handle CJS/ESM compat
+const testingLibraryReact = await import('@testing-library/react').catch(() => null);
+const testingLibraryReactHooks = await import('@testing-library/react-hooks').catch(() => null);
 
-const renderHook =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').renderHook ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').renderHook;
+const act = testingLibraryReact?.act || testingLibraryReactHooks?.act;
+const renderHook = testingLibraryReact?.renderHook || testingLibraryReactHooks?.renderHook;
 
 test('simple scenario', async () => {
   let hoistedSetValue;

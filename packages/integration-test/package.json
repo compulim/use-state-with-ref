@@ -13,7 +13,7 @@
     "precommit": "ESLINT_USE_FLAT_CONFIG=false eslint --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts ./",
     "pretest": "if test \"$CI\" = \"true\"; then npm run build; npm run docker -- --detach --wait; fi",
     "switch": "cat package.json | jq --arg SWITCH_NAME $SWITCH_NAME -r '(.[\"switch:\" + $SWITCH_NAME] // {}) as $TEMPLATE | .devDependencies += ($TEMPLATE.devDependencies // {}) | .dependencies += ($TEMPLATE.dependencies // {})' | tee ./package.json.tmp && mv ./package.json.tmp ./package.json",
-    "test": "jest"
+    "test": "node --experimental-strip-types --import ./happy-dom.import.mjs --test '**/*.test.{cjs,mjs}' 'typings.test.cjs'"
   },
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
@@ -66,19 +66,17 @@
     "use-state-with-ref": "0.0.0-0"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.25.8",
-    "@babel/preset-react": "^7.25.7",
     "@happy-dom/global-registrator": "^20.0.11",
     "@testduet/wait-for": "^0.1.0",
     "@testing-library/react": "^16.0.1",
     "@tsconfig/strictest": "^2.0.5",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.2",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
+    "expect": "^30.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-test-renderer": "^18.3.1",
+    "resolve-cwd": "^3.0.0",
     "typescript": "^5.6.3"
   },
   "dependencies": {
