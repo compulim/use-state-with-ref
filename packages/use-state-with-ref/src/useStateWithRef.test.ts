@@ -1,25 +1,10 @@
-/** @jest-environment jsdom */
-
-import { SetStateAction, type Dispatch, type RefObject } from 'react';
-
-import useStateWithRef from './useStateWithRef';
-
+import { act } from '@compulim/test-harness/act';
+import { renderHook } from '@compulim/test-harness/renderHook';
+import { expect } from 'expect';
+import { test } from 'node:test';
+import { type Dispatch, type RefObject, type SetStateAction } from 'react';
 import { type useRefFrom } from 'use-ref-from';
-
-const act: (fn: () => void) => void =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').act ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').act;
-
-const renderHook: <T, P>(
-  render: (props: P) => T,
-  options?: { initialProps: P }
-) => { rerender: (props: P) => void; result: { current: T } } =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').renderHook ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').renderHook;
+import useStateWithRef from './useStateWithRef.ts';
 
 type ReadonlyRefObject<T> = ReturnType<typeof useRefFrom<T>>;
 
