@@ -29,8 +29,6 @@
   "license": "MIT",
   "switch:react-16": {
     "dependencies": {
-      "@testing-library/react": "^12",
-      "@testing-library/react-hooks": "latest",
       "react": "16.8.0",
       "react-dom": "16.8.0",
       "react-test-renderer": "16.8.0"
@@ -42,8 +40,6 @@
   },
   "switch:react-17": {
     "dependencies": {
-      "@testing-library/react": "^12",
-      "@testing-library/react-hooks": "latest",
       "react": "17.0.0",
       "react-dom": "17.0.0",
       "react-test-renderer": "17.0.0"
@@ -86,7 +82,6 @@
     "use-state-with-ref": "0.0.0-0"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "^20.0.11",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.0.1",
     "@tsconfig/strictest": "^2.0.5",

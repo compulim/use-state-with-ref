@@ -106,7 +106,6 @@
   },
   "devDependencies": {
     "@compulim/test-harness": "0.0.0-0",
-    "@happy-dom/global-registrator": "^20.0.11",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.0.1",
     "@tsconfig/recommended": "^1.0.7",
