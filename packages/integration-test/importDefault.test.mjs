@@ -1,18 +1,8 @@
-/** @jest-environment jsdom */
-
+import { act } from '@compulim/test-harness/act';
+import { renderHook } from '@compulim/test-harness/renderHook';
+import { expect } from 'expect';
+import { test } from 'node:test';
 import { useStateWithRef } from 'use-state-with-ref';
-
-const act =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').act ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').act;
-
-const renderHook =
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react').renderHook ||
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
-  require('@testing-library/react-hooks').renderHook;
 
 test('simple scenario', async () => {
   let hoistedSetValue;

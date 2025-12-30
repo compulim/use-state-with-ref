@@ -1,11 +1,12 @@
 {
-  "name": "@compulim/use-state-with-ref-root",
+  "name": "@compulim/root",
   "version": "0.2.1-0",
   "description": "",
   "private": true,
   "author": "William Wong (https://github.com/compulim)",
   "license": "MIT",
   "workspaces": [
+    "packages/test-harness",
     "packages/use-state-with-ref",
     "packages/pages",
     "packages/integration-test"
@@ -35,6 +36,7 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^7.0.1",
     "prettier": "^3.1.1"
   }
 }

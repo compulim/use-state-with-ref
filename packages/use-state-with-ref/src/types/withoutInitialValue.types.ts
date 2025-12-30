@@ -1,4 +1,4 @@
-import { useStateWithRef } from 'use-state-with-ref';
+import { useStateWithRef } from '../index.ts';
 
 const [, , valueRef] = useStateWithRef<number>();
 const value: number | undefined = valueRef.current;

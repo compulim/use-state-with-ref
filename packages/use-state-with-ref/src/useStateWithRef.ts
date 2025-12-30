@@ -1,5 +1,7 @@
-import { type Dispatch, type SetStateAction, useState } from 'react';
+import React, { type Dispatch, type SetStateAction } from 'react';
 import { useRefFrom } from 'use-ref-from';
+
+const { useState } = React;
 
 type ReadonlyRefObject<S> = ReturnType<typeof useRefFrom<S>>;
 
