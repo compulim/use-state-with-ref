@@ -28,7 +28,7 @@
         "types": "./src/renderHook.d.ts"
       }
     },
-    "./typing-test.import": "./src/typing-test.import.mjs"
+    "./test-types.import": "./src/test-types.import.mjs"
   },
   "scripts": {
     "bump": "npm run bump:prod && npm run bump:dev",
