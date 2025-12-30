@@ -3,6 +3,9 @@
   "version": "0.0.0-0",
   "description": "",
   "private": true,
+  "files": [
+    "./src/**/*"
+  ],
   "exports": {
     "./act": {
       "import": {
