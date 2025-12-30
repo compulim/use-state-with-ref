@@ -17,7 +17,7 @@ registerHooks({
       const filename = resolve(fileURLToPath(url));
 
       // Could be loading /node_modules/.
-      if (filename.endsWith('.types.ts')) {
+      if (filename.endsWith('.test-types.ts')) {
         return {
           format: 'module-typescript',
           shortCircuit: true,
